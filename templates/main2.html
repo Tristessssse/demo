@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+
+
+
+<form method="post" action="{% url 'yzc:register' %}">
+    {% csrf_token %}
+    <label>Gender</label>
+    <label>
+        <select name="foo">
+            <option value="0" >Man</option>
+            <option value="1" >Woman</option>
+        </select>
+    </label>
+    <br>
+    <label>Username</label>
+    <label>
+        <textarea name="usernameA"></textarea>
+    </label>
+    <br>
+    <label>Password</label>
+    <label>
+        <textarea name="passwordA"></textarea>
+    </label>
+    <br>
+    <label>Confirm password</label>
+    <label>
+        <textarea name="passwordB"></textarea>
+    </label>
+    <br>
+    <button type="submit">Register</button>
+    <br>
+    <br>
+    {% if error %}
+    {{ error }}
+    {% endif %}
+    {% if success %}
+    {{ success }}
+    {% endif %}
+</form>
+
+
+
+
+
+<a  href = "http://127.0.0.1:8000/yzc/main/" >
+    <button >Back to login</button >
+</a >
+<br>
+</label>
+    Attention：Username or password can not exceed 15 characters at most, and can not use special characters, spaces or Chinese characters
+</lable>
+
+</body>
+</html>

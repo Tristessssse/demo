@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+
+
+<form method="post" action="{% url 'yzc:login' %}">
+    {% csrf_token %}
+    <label>Username</label>
+    <label>
+        <textarea name="username1"></textarea>
+    </label>
+    <br>
+    <label>Password</label>
+    <label>
+        <textarea name="password1"></textarea>
+    </label>
+    <br>
+    <button type="submit">Submit</button>
+    <br>
+    <br>
+    {% if error %}
+    {{ error }}
+    {% endif %}
+
+</form>
+    <a  href = "http://127.0.0.1:8000/yzc/main2/" >
+    <button >Register</button >
+    </a >
+
+
+</body>
+</html>
