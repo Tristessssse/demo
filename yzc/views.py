@@ -38,18 +38,18 @@ def my_register(request):
         if len(usernameA) < 16 and len(passwordA) < 16 and len(passwordB) < 16 and \
                 len(usernameA) != 0 and len(passwordA) != 0 and len(passwordB) != 0:
             if passwordA == passwordB:
-                for i in usernameA and passwordA:
-                    if i.isdigit() or i.isalpha():
-                        username[usernameA] = passwordA
-                        success = {'success': "Registration successful!"}
-                        if request.POST.get('foo') == 0:
-                            gender[usernameA] = 'Mr. '
-                        elif request.POST.get('foo') == 1:
-                            gender[usernameA] = 'Miss '
-                        return render(request, 'main2.html', success)
+                for i in usernameA or passwordA:
+                    if i.isdigit() or i.isalpha() and not '\u4e00' <= i <= '\u9fff':
+                        if usernameA not in username:
+                            username[usernameA] = passwordA
+                            success = {'success': "Registration successful!"}
+                            return render(request, 'main2.html', success)
+                        else:
+                            error = {'error': "The username has already existed!"}
+                            return render(request, 'main2.html', error)
 
                     else:
-                        error = {'error': "The user name or password you entered contains illegal characters！"}
+                        error = {'error': "The username or password you entered contains illegal characters！"}
                         return render(request, 'main2.html', error)
             else:
                 error = {'error': "The two passwords you entered must be the same！"}
@@ -57,11 +57,3 @@ def my_register(request):
         else:
             error = {'error': "The length of the character you entered is illegal."}
             return render(request, 'main2.html', error)
-
-
-
-
-
-
-
-
